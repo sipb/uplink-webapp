@@ -59,86 +59,9 @@ export default class AboutBuildModal extends React.PureComponent {
         const config = this.props.config;
         const license = this.props.license;
 
-        let title = (
-            <FormattedMessage
-                id='about.teamEditiont0'
-                defaultMessage='Team Edition'
-            />
-        );
+        let title = 'Fork';
 
-        let subTitle = (
-            <FormattedMessage
-                id='about.teamEditionSt'
-                defaultMessage='All your team communication in one place, instantly searchable and accessible anywhere.'
-            />
-        );
-
-        let learnMore = (
-            <div>
-                <FormattedMessage
-                    id='about.teamEditionLearn'
-                    defaultMessage='Join the Mattermost community at '
-                />
-                <a
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    href='http://www.mattermost.org/'
-                >
-                    {'mattermost.org'}
-                </a>
-            </div>
-        );
-
-        let licensee;
-        if (config.BuildEnterpriseReady === 'true') {
-            title = (
-                <FormattedMessage
-                    id='about.teamEditiont1'
-                    defaultMessage='Enterprise Edition'
-                />
-            );
-
-            subTitle = (
-                <FormattedMessage
-                    id='about.enterpriseEditionSt'
-                    defaultMessage='Modern communication from behind your firewall.'
-                />
-            );
-
-            learnMore = (
-                <div>
-                    <FormattedMessage
-                        id='about.enterpriseEditionLearn'
-                        defaultMessage='Learn more about Enterprise Edition at '
-                    />
-                    <a
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        href='http://about.mattermost.com/'
-                    >
-                        {'about.mattermost.com'}
-                    </a>
-                </div>
-            );
-
-            if (license.IsLicensed === 'true') {
-                title = (
-                    <FormattedMessage
-                        id='about.enterpriseEditione1'
-                        defaultMessage='Enterprise Edition'
-                    />
-                );
-                licensee = (
-                    <div className='form-group'>
-                        <FormattedMessage
-                            id='about.licensed'
-                            defaultMessage='Licensed to:'
-                        />
-                        &nbsp;{license.Company}
-                    </div>
-                );
-            }
-        }
+        let subTitle = 'All your team communication in one place, instantly searchable and accessible anywhere.';
 
         const termsOfService = (
             <a
@@ -177,20 +100,6 @@ export default class AboutBuildModal extends React.PureComponent {
             );
         }
 
-        // Only show build number if it's a number (so only builds from Jenkins)
-        let buildnumber = (
-            <div>
-                <FormattedMessage
-                    id='about.buildnumber'
-                    defaultMessage='Build Number:'
-                />
-                <span id='buildnumberString'>{'\u00a0' + config.BuildNumber}</span>
-            </div>
-        );
-        if (isNaN(config.BuildNumber)) {
-            buildnumber = null;
-        }
-
         let mmversion = config.BuildNumber;
         if (!isNaN(config.BuildNumber)) {
             mmversion = 'ci';
@@ -223,13 +132,13 @@ export default class AboutBuildModal extends React.PureComponent {
                             <MattermostLogo/>
                         </div>
                         <div>
-                            <h3 className='about-modal__title'>{'Mattermost'} {title}</h3>
+                            <h3 className='about-modal__title'>{'Uplink'} {title}</h3>
                             <p className='about-modal__subtitle padding-bottom'>{subTitle}</p>
                             <div className='form-group less'>
                                 <div>
                                     <FormattedMessage
                                         id='about.version'
-                                        defaultMessage='Mattermost Version:'
+                                        defaultMessage='Uplink Version:'
                                     />
                                     <span id='versionString'>{'\u00a0' + mmversion}</span>
                                 </div>
@@ -240,7 +149,6 @@ export default class AboutBuildModal extends React.PureComponent {
                                     />
                                     <span id='dbversionString'>{'\u00a0' + config.Version}</span>
                                 </div>
-                                {buildnumber}
                                 <div>
                                     <FormattedMessage
                                         id='about.database'
@@ -249,20 +157,14 @@ export default class AboutBuildModal extends React.PureComponent {
                                     {'\u00a0' + config.SQLDriverName}
                                 </div>
                             </div>
-                            {licensee}
                         </div>
                     </div>
                     <div className='about-modal__footer'>
-                        {learnMore}
                         <div className='form-group'>
                             <div className='about-modal__copyright'>
-                                <FormattedMessage
-                                    id='about.copyright'
-                                    defaultMessage='Copyright 2015 - {currentYear} Mattermost, Inc. All rights reserved'
-                                    values={{
-                                        currentYear: new Date().getFullYear(),
-                                    }}
-                                />
+                                <p>{'Original software is Copyright 2015 - ' + new Date().getFullYear() + ' Mattermost, Inc. All rights reserved.'}</p>
+                                <p>{'Uplink modifications are Copyright 2020 - ' + new Date().getFullYear() + ' Cel Skeggs and other Uplink contributors.'}</p>
+                                <p>{'Uplink is licensed under the AGPL v3, and the source code can be retrieved from '}<a href="https://github.com/sipb/uplink-webapp">{'our GitHub repository'}</a>{'.'}</p>
                             </div>
                             <div className='about-modal__links'>
                                 {termsOfService}
@@ -273,10 +175,7 @@ export default class AboutBuildModal extends React.PureComponent {
                     </div>
                     <div className='about-modal__notice form-group padding-top x2'>
                         <p>
-                            <FormattedMarkdownMessage
-                                id='about.notice'
-                                defaultMessage='Mattermost is made possible by the open source software used in our [server](!https://about.mattermost.com/platform-notice-txt/), [desktop](!https://about.mattermost.com/desktop-notice-txt/) and [mobile](!https://about.mattermost.com/mobile-notice-txt/) apps.'
-                            />
+                            {'Uplink is made possible by the open source software used in our '}<a href="https://github.com/sipb/uplink-server/blob/master/NOTICE.txt">{'server'}</a>{' and '}<a href="https://github.com/sipb/uplink-webapp/blob/master/NOTICE.txt">{'webapp'}</a>{'.'}
                         </p>
                     </div>
                     <div className='about-modal__hash'>

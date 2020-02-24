@@ -44,43 +44,6 @@ export default class LicenseSettings extends React.Component {
         }
     }
 
-    handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const element = this.refs.fileInput;
-        if (!element || element.files.length === 0) {
-            return;
-        }
-        const file = element.files[0];
-
-        this.setState({uploading: true});
-
-        const {error} = await this.props.actions.uploadLicense(file);
-        if (error) {
-            Utils.clearFileInput(element[0]);
-            this.setState({fileSelected: false, fileName: null, serverError: error.message, uploading: false});
-            return;
-        }
-
-        await this.props.actions.getLicenseConfig();
-        this.setState({fileSelected: false, fileName: null, serverError: null, uploading: false});
-    }
-
-    handleRemove = async (e) => {
-        e.preventDefault();
-
-        this.setState({removing: true});
-
-        const {error} = await this.props.actions.removeLicense();
-        if (error) {
-            this.setState({fileSelected: false, fileName: null, serverError: error.message, removing: false});
-            return;
-        }
-
-        await this.props.actions.getLicenseConfig();
-        this.setState({fileSelected: false, fileName: null, serverError: null, removing: false});
-    }
-
     render() {
         let serverError = '';
         if (this.state.serverError) {
@@ -110,146 +73,25 @@ export default class LicenseSettings extends React.Component {
         const expiresAt = <FormattedDate value={new Date(parseInt(license.ExpiresAt, 10))}/>;
 
         if (license.IsLicensed === 'true' && !uploading) {
-            // Note: DO NOT LOCALISE THESE STRINGS. Legally we can not since the license is in English.
-            const sku = license.SkuShortName ? <React.Fragment>{`Edition: Mattermost Enterprise Edition ${license.SkuShortName}`}<br/></React.Fragment> : null;
-            edition = 'Mattermost Enterprise Edition. Enterprise features on this server have been unlocked with a license key and a valid subscription.';
+            edition = 'SIPB Uplink, a fork of Mattermost. Features considered to be Enterprise features by Mattermost are automatically unlocked in this fork.';
             licenseType = (
                 <div>
                     <p>
-                        {'This software is offered under a commercial license.\n\nSee ENTERPRISE-EDITION-LICENSE.txt in your root install directory for details. See NOTICE.txt for information about open source software used in this system.\n\nYour subscription details are as follows:'}
+                        {'This software is offered under the AGPL license.\n\nSee LICENSE.txt in your root install directory for details. See NOTICE.txt for information about open source software used in this system.\n\nThe following describes the automatic feature-enablement parameters of Uplink:'}
                     </p>
                     {`Name: ${license.Name}`}<br/>
                     {`Company or organization name: ${license.Company}`}<br/>
-                    {sku}
+                    {`Edition: Uplink Fork`}<br/>
                     {`Number of users: ${license.Users}`}<br/>
                     {'License issued: '}{issued}<br/>
                     {'Start date of license: '}{startsAt}<br/>
                     {'Expiry date of license: '}{expiresAt}<br/>
-                    <br/>
-                    {'See also '}
-                    <a
-                        rel='noopener noreferrer'
-                        target='_blank'
-                        href='https://about.mattermost.com/enterprise-edition-terms/'
-                    >{'Enterprise Edition Terms of Service'}</a>{' and '}
-                    <a
-                        rel='noopener noreferrer'
-                        target='_blank'
-                        href='https://about.mattermost.com/default-privacy-policy/'
-                    >{'Privacy Policy.'}</a>
-                </div>
-            );
-
-            let removeButtonText = (
-                <FormattedMessage
-                    id='admin.license.keyRemove'
-                    defaultMessage='Remove Enterprise License and Downgrade Server'
-                />
-            );
-            if (this.state.removing) {
-                removeButtonText = (
-                    <FormattedMessage
-                        id='admin.license.removing'
-                        defaultMessage='Removing License...'
-                    />
-                );
-            }
-
-            licenseKey = (
-                <div className='col-sm-8'>
-                    <button
-                        className='btn btn-danger'
-                        onClick={this.handleRemove}
-                        id='remove-button'
-                    >
-                        {removeButtonText}
-                    </button>
-                    <br/>
-                    <br/>
-                    <p className='help-text'>
-                        {'If you migrate servers you may need to remove your license key to install it elsewhere. You can remove the key here, which will revert functionality to that of Team Edition.'}
-                    </p>
                 </div>
             );
         } else {
-            // Note: DO NOT LOCALISE THESE STRINGS. Legally we can not since the license is in English.
-            edition = (
-                <p>
-                    {'Mattermost Enterprise Edition. A license is required to unlock enterprise features. Start a trial subscription at '}
-                    <a
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        href='https://mattermost.com/trial/?utm_medium=product&utm_source=product-trial'
-                    >
-                        {'https://mattermost.com/trial/'}
-                    </a>
-                </p>
-            );
-
-            licenseType = 'This software is offered under a commercial license.\n\nSee ENTERPRISE-EDITION-LICENSE.txt in your root install directory for details. See NOTICE.txt for information about open source software used in this system.';
-
-            let fileName;
-            if (this.state.fileName) {
-                fileName = this.state.fileName;
-            } else {
-                fileName = (
-                    <FormattedMessage
-                        id='admin.license.noFile'
-                        defaultMessage='No file uploaded'
-                    />
-                );
-            }
-
-            let uploadButtonText = (
-                <FormattedMessage
-                    id='admin.license.upload'
-                    defaultMessage='Upload'
-                />
-            );
-            if (uploading) {
-                uploadButtonText = (
-                    <FormattedMessage
-                        id='admin.license.uploading'
-                        defaultMessage='Uploading License...'
-                    />
-                );
-            }
-
-            licenseKey = (
-                <div className='col-sm-8'>
-                    <div className='file__upload'>
-                        <button className='btn btn-primary'>
-                            <FormattedMessage
-                                id='admin.license.choose'
-                                defaultMessage='Choose File'
-                            />
-                        </button>
-                        <input
-                            ref='fileInput'
-                            type='file'
-                            accept='.mattermost-license'
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <button
-                        className={btnClass}
-                        disabled={!this.state.fileSelected}
-                        onClick={this.handleSubmit}
-                        id='upload-button'
-                    >
-                        {uploadButtonText}
-                    </button>
-                    <div className='help-text no-margin'>
-                        {fileName}
-                    </div>
-                    <br/>
-                    {serverError}
-                    <p className='help-text no-margin'>
-                        <FormattedMarkdownMessage
-                            id='admin.license.uploadDesc'
-                            defaultMessage='Upload a license key for Mattermost Enterprise Edition to upgrade this server. [Visit us online](!http://mattermost.com) to learn more about the benefits of Enterprise Edition or to purchase a key.'
-                        />
-                    </p>
+            licenseType = (
+                <div>
+                    {'Error: all features should automatically be enabled, but the feature enablement flag was not set, as if the automatic license was not configured correctly.'}
                 </div>
             );
         }
@@ -292,17 +134,6 @@ export default class LicenseSettings extends React.Component {
                                 <div className='col-sm-8'>
                                     {licenseType}
                                 </div>
-                            </div>
-                            <div className='form-group'>
-                                <label
-                                    className='control-label col-sm-4'
-                                >
-                                    <FormattedMessage
-                                        id='admin.license.key'
-                                        defaultMessage='License Key: '
-                                    />
-                                </label>
-                                {licenseKey}
                             </div>
                         </form>
                     </div>
