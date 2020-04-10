@@ -10,7 +10,7 @@ import {trackEvent} from 'actions/diagnostics_actions.jsx';
 import Constants from 'utils/constants';
 import {isMobile} from 'utils/user_agent';
 import * as Utils from 'utils/utils.jsx';
-import ConfirmModal from 'components/confirm_modal.jsx';
+import ConfirmModal from 'components/confirm_modal';
 import SettingItemMax from 'components/setting_item_max.jsx';
 import SettingItemMin from 'components/setting_item_min';
 import SaveButton from 'components/save_button';
@@ -49,6 +49,7 @@ export default class UserAccessTokenSection extends React.Component {
         super(props);
 
         this.state = {
+            active: this.props.active,
             showConfirmModal: false,
             newToken: null,
             tokenCreationState: TOKEN_NOT_CREATING,
@@ -64,17 +65,19 @@ export default class UserAccessTokenSection extends React.Component {
         this.props.actions.getUserAccessTokensForUser(userId, 0, 200);
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps) { // eslint-disable-line camelcase
-        if (!nextProps.active && this.props.active) {
-            this.setState({
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (!nextProps.active && prevState.active) {
+            return {
+                active: nextProps.active,
                 showConfirmModal: false,
                 newToken: null,
                 tokenCreationState: TOKEN_NOT_CREATING,
                 tokenError: '',
                 serverError: null,
                 saving: false,
-            });
+            };
         }
+        return {active: nextProps.active};
     }
 
     startCreatingToken = () => {
@@ -114,7 +117,7 @@ export default class UserAccessTokenSection extends React.Component {
             confirmTitle: (
                 <FormattedMessage
                     id='user.settings.tokens.confirmCopyTitle'
-                    defaultMessage='Have you copied your token?'
+                    defaultMessage='Copied Your Token?'
                 />
             ),
             confirmMessage: (state) => (
@@ -524,7 +527,7 @@ export default class UserAccessTokenSection extends React.Component {
                 >
                     <FormattedMessage
                         id='user.settings.tokens.create'
-                        defaultMessage='Create New Token'
+                        defaultMessage='Create Token'
                     />
                 </a>
             );
