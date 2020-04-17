@@ -133,7 +133,7 @@ export default class AboutBuildModal extends React.PureComponent {
                         </div>
                         <div>
                             <h3 className='about-modal__title'>{'Uplink'} {title}</h3>
-                            <p className='about-modal__subtitle padding-bottom'>{subTitle}</p>
+                            <p className='about-modal__subtitle pb-2'>{subTitle}</p>
                             <div className='form-group less'>
                                 <div>
                                     <FormattedMessage
@@ -173,7 +173,7 @@ export default class AboutBuildModal extends React.PureComponent {
                             </div>
                         </div>
                     </div>
-                    <div className='about-modal__notice form-group padding-top x2'>
+                    <div className='about-modal__notice form-group pt-3'>
                         <p>
                             {'Uplink is made possible by the open source software used in our '}<a href="https://github.com/sipb/uplink-server/blob/master/NOTICE.txt">{'server'}</a>{' and '}<a href="https://github.com/sipb/uplink-webapp/blob/master/NOTICE.txt">{'webapp'}</a>{'.'}
                         </p>
