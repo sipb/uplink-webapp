@@ -91,15 +91,6 @@ export default class AboutBuildModal extends React.PureComponent {
             </a>
         );
 
-        let tosPrivacyHyphen;
-        if (config.TermsOfServiceLink && config.PrivacyPolicyLink) {
-            tosPrivacyHyphen = (
-                <span>
-                    {' - '}
-                </span>
-            );
-        }
-
         let mmversion = config.BuildNumber;
         if (!isNaN(config.BuildNumber)) {
             mmversion = 'ci';
@@ -168,7 +159,7 @@ export default class AboutBuildModal extends React.PureComponent {
                             </div>
                             <div className='about-modal__links'>
                                 {termsOfService}
-                                {tosPrivacyHyphen}
+                                {' - '}
                                 {privacyPolicy}
                             </div>
                         </div>
