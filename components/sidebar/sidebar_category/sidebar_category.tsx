@@ -219,7 +219,7 @@ export default class SidebarCategory extends React.PureComponent<Props, State> {
             return null;
         }
 
-        if (category.type !== CategoryTypes.DIRECT_MESSAGES && category.type !== CategoryTypes.CUSTOM && !channels?.length) {
+        if (category.type === CategoryTypes.FAVORITES && !channels?.length) {
             return null;
         }
 
@@ -264,7 +264,7 @@ export default class SidebarCategory extends React.PureComponent<Props, State> {
                 sortHelpLabel = localizeMessage('sidebar.sortedByAlphabetical', 'Sorted alphabetically');
             } else {
                 sortingIcon = (<i className='icon-clock-outline'/>);
-                sortHelpLabel = localizeMessage('sidebar.sortedByRecency', 'Sorted by recency');
+                sortHelpLabel = localizeMessage('sidebar.sortedByRecency', 'Sorted by most recent');
             }
 
             const sortTooltip = (
