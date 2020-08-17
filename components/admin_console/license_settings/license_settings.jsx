@@ -7,17 +7,21 @@ import {FormattedDate, FormattedTime, FormattedMessage} from 'react-intl';
 
 import * as Utils from 'utils/utils.jsx';
 
+import * as AdminActions from 'actions/admin_actions.jsx';
+
 import FormattedMarkdownMessage from 'components/formatted_markdown_message.jsx';
 import FormattedAdminHeader from 'components/widgets/admin_console/formatted_admin_header';
+import LoadingWrapper from 'components/widgets/loading/loading_wrapper';
 
 export default class LicenseSettings extends React.PureComponent {
     static propTypes = {
         license: PropTypes.object.isRequired,
-        config: PropTypes.object,
+        stats: PropTypes.object,
         actions: PropTypes.shape({
             getLicenseConfig: PropTypes.func.isRequired,
             uploadLicense: PropTypes.func.isRequired,
             removeLicense: PropTypes.func.isRequired,
+            requestTrialLicense: PropTypes.func.isRequired,
         }).isRequired,
     }
 
@@ -28,6 +32,8 @@ export default class LicenseSettings extends React.PureComponent {
             fileSelected: false,
             fileName: null,
             serverError: null,
+            gettingTrialError: null,
+            gettingTrial: false,
             removing: false,
             uploading: false,
         };
@@ -35,6 +41,7 @@ export default class LicenseSettings extends React.PureComponent {
 
     componentDidMount() {
         this.props.actions.getLicenseConfig();
+        AdminActions.getStandardAnalytics();
     }
 
     handleChange = () => {
@@ -44,10 +51,51 @@ export default class LicenseSettings extends React.PureComponent {
         }
     }
 
+    handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const element = this.refs.fileInput;
+        if (!element || element.files.length === 0) {
+            return;
+        }
+        const file = element.files[0];
+
+        this.setState({uploading: true});
+
+        const {error} = await this.props.actions.uploadLicense(file);
+        if (error) {
+            Utils.clearFileInput(element[0]);
+            this.setState({fileSelected: false, fileName: null, serverError: error.message, uploading: false});
+            return;
+        }
+
+        await this.props.actions.getLicenseConfig();
+        this.setState({fileSelected: false, fileName: null, serverError: null, uploading: false});
+    }
+
+    handleRemove = async (e) => {
+        e.preventDefault();
+
+        this.setState({removing: true});
+
+        const {error} = await this.props.actions.removeLicense();
+        if (error) {
+            this.setState({fileSelected: false, fileName: null, serverError: error.message, removing: false});
+            return;
+        }
+
+        await this.props.actions.getLicenseConfig();
+        this.setState({fileSelected: false, fileName: null, serverError: null, removing: false});
+    }
+
     render() {
         let serverError = '';
         if (this.state.serverError) {
             serverError = <div className='col-sm-12'><div className='form-group has-error'><label className='control-label'>{this.state.serverError}</label></div></div>;
+        }
+        let gettingTrialError = '';
+        if (this.state.gettingTrialError) {
+            gettingTrialError = <p className='form-group has-error'><label className='control-label'>{this.state.gettingTrialError}</label></p>;
         }
 
         var btnClass = 'btn';
