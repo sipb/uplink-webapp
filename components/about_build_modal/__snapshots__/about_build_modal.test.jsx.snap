@@ -67,29 +67,21 @@ exports[`components/AboutBuildModal should match snapshot for enterprise edition
         <h3
           className="about-modal__title"
         >
-          Mattermost
+          Uplink
            
-          <FormattedMessage
-            defaultMessage="Enterprise Edition"
-            id="about.enterpriseEditione1"
-            values={Object {}}
-          />
+          Fork
         </h3>
         <p
           className="about-modal__subtitle pb-2"
         >
-          <FormattedMessage
-            defaultMessage="Modern communication from behind your firewall."
-            id="about.enterpriseEditionSt"
-            values={Object {}}
-          />
+          All your team communication in one place, instantly searchable and accessible anywhere.
         </p>
         <div
           className="form-group less"
         >
           <div>
             <FormattedMessage
-              defaultMessage="Mattermost Version:"
+              defaultMessage="Uplink Version:"
               id="about.version"
               values={Object {}}
             />
@@ -120,51 +112,32 @@ exports[`components/AboutBuildModal should match snapshot for enterprise edition
              Postgres
           </div>
         </div>
-        <div
-          className="form-group"
-        >
-          <FormattedMessage
-            defaultMessage="Licensed to:"
-            id="about.licensed"
-            values={Object {}}
-          />
-           
-          Mattermost Inc
-        </div>
       </div>
     </div>
     <div
       className="about-modal__footer"
     >
-      <div>
-        <FormattedMessage
-          defaultMessage="Learn more about Enterprise Edition at "
-          id="about.enterpriseEditionLearn"
-          values={Object {}}
-        />
-        <a
-          href="http://about.mattermost.com/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          about.mattermost.com
-        </a>
-      </div>
       <div
         className="form-group"
       >
         <div
           className="about-modal__copyright"
         >
-          <FormattedMessage
-            defaultMessage="Copyright 2015 - {currentYear} Mattermost, Inc. All rights reserved"
-            id="about.copyright"
-            values={
-              Object {
-                "currentYear": 2017,
-              }
-            }
-          />
+          <p>
+            Original software is Copyright 2015 - 2017 Mattermost, Inc. All rights reserved.
+          </p>
+          <p>
+            Uplink modifications are Copyright 2020 - 2017 Cel Skeggs and other Uplink contributors.
+          </p>
+          <p>
+            Uplink is licensed under the AGPL v3, and the source code can be retrieved from 
+            <a
+              href="https://github.com/sipb/uplink-webapp"
+            >
+              our GitHub repository
+            </a>
+            .
+          </p>
         </div>
         <div
           className="about-modal__links"
@@ -201,10 +174,19 @@ exports[`components/AboutBuildModal should match snapshot for enterprise edition
       className="about-modal__notice form-group pt-3"
     >
       <p>
-        <injectIntl(FormattedMarkdownMessage)
-          defaultMessage="Mattermost is made possible by the open source software used in our [server](!https://about.mattermost.com/platform-notice-txt/), [desktop](!https://about.mattermost.com/desktop-notice-txt/) and [mobile](!https://about.mattermost.com/mobile-notice-txt/) apps."
-          id="about.notice"
-        />
+        Uplink is made possible by the open source software used in our 
+        <a
+          href="https://github.com/sipb/uplink-server/blob/master/NOTICE.txt"
+        >
+          server
+        </a>
+         and 
+        <a
+          href="https://github.com/sipb/uplink-webapp/blob/master/NOTICE.txt"
+        >
+          webapp
+        </a>
+        .
       </p>
     </div>
     <div
@@ -316,29 +298,21 @@ exports[`components/AboutBuildModal should match snapshot for team edition 1`] =
         <h3
           className="about-modal__title"
         >
-          Mattermost
+          Uplink
            
-          <FormattedMessage
-            defaultMessage="Team Edition"
-            id="about.teamEditiont0"
-            values={Object {}}
-          />
+          Fork
         </h3>
         <p
           className="about-modal__subtitle pb-2"
         >
-          <FormattedMessage
-            defaultMessage="All your team communication in one place, instantly searchable and accessible anywhere."
-            id="about.teamEditionSt"
-            values={Object {}}
-          />
+          All your team communication in one place, instantly searchable and accessible anywhere.
         </p>
         <div
           className="form-group less"
         >
           <div>
             <FormattedMessage
-              defaultMessage="Mattermost Version:"
+              defaultMessage="Uplink Version:"
               id="about.version"
               values={Object {}}
             />
@@ -374,35 +348,27 @@ exports[`components/AboutBuildModal should match snapshot for team edition 1`] =
     <div
       className="about-modal__footer"
     >
-      <div>
-        <FormattedMessage
-          defaultMessage="Join the Mattermost community at "
-          id="about.teamEditionLearn"
-          values={Object {}}
-        />
-        <a
-          href="http://www.mattermost.org/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          mattermost.org
-        </a>
-      </div>
       <div
         className="form-group"
       >
         <div
           className="about-modal__copyright"
         >
-          <FormattedMessage
-            defaultMessage="Copyright 2015 - {currentYear} Mattermost, Inc. All rights reserved"
-            id="about.copyright"
-            values={
-              Object {
-                "currentYear": 2017,
-              }
-            }
-          />
+          <p>
+            Original software is Copyright 2015 - 2017 Mattermost, Inc. All rights reserved.
+          </p>
+          <p>
+            Uplink modifications are Copyright 2020 - 2017 Cel Skeggs and other Uplink contributors.
+          </p>
+          <p>
+            Uplink is licensed under the AGPL v3, and the source code can be retrieved from 
+            <a
+              href="https://github.com/sipb/uplink-webapp"
+            >
+              our GitHub repository
+            </a>
+            .
+          </p>
         </div>
         <div
           className="about-modal__links"
@@ -439,10 +405,19 @@ exports[`components/AboutBuildModal should match snapshot for team edition 1`] =
       className="about-modal__notice form-group pt-3"
     >
       <p>
-        <injectIntl(FormattedMarkdownMessage)
-          defaultMessage="Mattermost is made possible by the open source software used in our [server](!https://about.mattermost.com/platform-notice-txt/), [desktop](!https://about.mattermost.com/desktop-notice-txt/) and [mobile](!https://about.mattermost.com/mobile-notice-txt/) apps."
-          id="about.notice"
-        />
+        Uplink is made possible by the open source software used in our 
+        <a
+          href="https://github.com/sipb/uplink-server/blob/master/NOTICE.txt"
+        >
+          server
+        </a>
+         and 
+        <a
+          href="https://github.com/sipb/uplink-webapp/blob/master/NOTICE.txt"
+        >
+          webapp
+        </a>
+        .
       </p>
     </div>
     <div
@@ -553,29 +528,21 @@ exports[`components/AboutBuildModal should show ci if a ci build 1`] = `
         <h3
           className="about-modal__title"
         >
-          Mattermost
+          Uplink
            
-          <FormattedMessage
-            defaultMessage="Team Edition"
-            id="about.teamEditiont0"
-            values={Object {}}
-          />
+          Fork
         </h3>
         <p
           className="about-modal__subtitle pb-2"
         >
-          <FormattedMessage
-            defaultMessage="All your team communication in one place, instantly searchable and accessible anywhere."
-            id="about.teamEditionSt"
-            values={Object {}}
-          />
+          All your team communication in one place, instantly searchable and accessible anywhere.
         </p>
         <div
           className="form-group less"
         >
           <div>
             <FormattedMessage
-              defaultMessage="Mattermost Version:"
+              defaultMessage="Uplink Version:"
               id="about.version"
               values={Object {}}
             />
@@ -599,18 +566,6 @@ exports[`components/AboutBuildModal should show ci if a ci build 1`] = `
           </div>
           <div>
             <FormattedMessage
-              defaultMessage="Build Number:"
-              id="about.buildnumber"
-              values={Object {}}
-            />
-            <span
-              id="buildnumberString"
-            >
-               123
-            </span>
-          </div>
-          <div>
-            <FormattedMessage
               defaultMessage="Database:"
               id="about.database"
               values={Object {}}
@@ -623,35 +578,27 @@ exports[`components/AboutBuildModal should show ci if a ci build 1`] = `
     <div
       className="about-modal__footer"
     >
-      <div>
-        <FormattedMessage
-          defaultMessage="Join the Mattermost community at "
-          id="about.teamEditionLearn"
-          values={Object {}}
-        />
-        <a
-          href="http://www.mattermost.org/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          mattermost.org
-        </a>
-      </div>
       <div
         className="form-group"
       >
         <div
           className="about-modal__copyright"
         >
-          <FormattedMessage
-            defaultMessage="Copyright 2015 - {currentYear} Mattermost, Inc. All rights reserved"
-            id="about.copyright"
-            values={
-              Object {
-                "currentYear": 2017,
-              }
-            }
-          />
+          <p>
+            Original software is Copyright 2015 - 2017 Mattermost, Inc. All rights reserved.
+          </p>
+          <p>
+            Uplink modifications are Copyright 2020 - 2017 Cel Skeggs and other Uplink contributors.
+          </p>
+          <p>
+            Uplink is licensed under the AGPL v3, and the source code can be retrieved from 
+            <a
+              href="https://github.com/sipb/uplink-webapp"
+            >
+              our GitHub repository
+            </a>
+            .
+          </p>
         </div>
         <div
           className="about-modal__links"
@@ -688,10 +635,19 @@ exports[`components/AboutBuildModal should show ci if a ci build 1`] = `
       className="about-modal__notice form-group pt-3"
     >
       <p>
-        <injectIntl(FormattedMarkdownMessage)
-          defaultMessage="Mattermost is made possible by the open source software used in our [server](!https://about.mattermost.com/platform-notice-txt/), [desktop](!https://about.mattermost.com/desktop-notice-txt/) and [mobile](!https://about.mattermost.com/mobile-notice-txt/) apps."
-          id="about.notice"
-        />
+        Uplink is made possible by the open source software used in our 
+        <a
+          href="https://github.com/sipb/uplink-server/blob/master/NOTICE.txt"
+        >
+          server
+        </a>
+         and 
+        <a
+          href="https://github.com/sipb/uplink-webapp/blob/master/NOTICE.txt"
+        >
+          webapp
+        </a>
+        .
       </p>
     </div>
     <div
@@ -802,29 +758,21 @@ exports[`components/AboutBuildModal should show dev if this is a dev build 1`] =
         <h3
           className="about-modal__title"
         >
-          Mattermost
+          Uplink
            
-          <FormattedMessage
-            defaultMessage="Team Edition"
-            id="about.teamEditiont0"
-            values={Object {}}
-          />
+          Fork
         </h3>
         <p
           className="about-modal__subtitle pb-2"
         >
-          <FormattedMessage
-            defaultMessage="All your team communication in one place, instantly searchable and accessible anywhere."
-            id="about.teamEditionSt"
-            values={Object {}}
-          />
+          All your team communication in one place, instantly searchable and accessible anywhere.
         </p>
         <div
           className="form-group less"
         >
           <div>
             <FormattedMessage
-              defaultMessage="Mattermost Version:"
+              defaultMessage="Uplink Version:"
               id="about.version"
               values={Object {}}
             />
@@ -860,35 +808,27 @@ exports[`components/AboutBuildModal should show dev if this is a dev build 1`] =
     <div
       className="about-modal__footer"
     >
-      <div>
-        <FormattedMessage
-          defaultMessage="Join the Mattermost community at "
-          id="about.teamEditionLearn"
-          values={Object {}}
-        />
-        <a
-          href="http://www.mattermost.org/"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          mattermost.org
-        </a>
-      </div>
       <div
         className="form-group"
       >
         <div
           className="about-modal__copyright"
         >
-          <FormattedMessage
-            defaultMessage="Copyright 2015 - {currentYear} Mattermost, Inc. All rights reserved"
-            id="about.copyright"
-            values={
-              Object {
-                "currentYear": 2017,
-              }
-            }
-          />
+          <p>
+            Original software is Copyright 2015 - 2017 Mattermost, Inc. All rights reserved.
+          </p>
+          <p>
+            Uplink modifications are Copyright 2020 - 2017 Cel Skeggs and other Uplink contributors.
+          </p>
+          <p>
+            Uplink is licensed under the AGPL v3, and the source code can be retrieved from 
+            <a
+              href="https://github.com/sipb/uplink-webapp"
+            >
+              our GitHub repository
+            </a>
+            .
+          </p>
         </div>
         <div
           className="about-modal__links"
@@ -925,10 +865,19 @@ exports[`components/AboutBuildModal should show dev if this is a dev build 1`] =
       className="about-modal__notice form-group pt-3"
     >
       <p>
-        <injectIntl(FormattedMarkdownMessage)
-          defaultMessage="Mattermost is made possible by the open source software used in our [server](!https://about.mattermost.com/platform-notice-txt/), [desktop](!https://about.mattermost.com/desktop-notice-txt/) and [mobile](!https://about.mattermost.com/mobile-notice-txt/) apps."
-          id="about.notice"
-        />
+        Uplink is made possible by the open source software used in our 
+        <a
+          href="https://github.com/sipb/uplink-server/blob/master/NOTICE.txt"
+        >
+          server
+        </a>
+         and 
+        <a
+          href="https://github.com/sipb/uplink-webapp/blob/master/NOTICE.txt"
+        >
+          webapp
+        </a>
+        .
       </p>
     </div>
     <div

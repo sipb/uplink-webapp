@@ -147,108 +147,7 @@ export default class LicenseSettings extends React.PureComponent {
         } else {
             licenseType = (
                 <div>
-<<<<<<< HEAD
                     {'Error: all features should automatically be enabled, but the feature enablement flag was not set, as if the automatic license was not configured correctly.'}
-||||||| dbd9c48db
-                    {'Mattermost Enterprise Edition. A license is required to unlock enterprise features.'}
-                    <p className='trial'>
-                        <button
-                            className='btn btn-primary'
-                            onClick={this.requestLicense}
-                        >
-                            <LoadingWrapper
-                                loading={this.state.gettingTrial}
-                                text={Utils.localizeMessage('admin.license.trial-request.loading', 'Getting trial')}
-                            >
-                                <FormattedMessage
-                                    id='admin.license.trial-request.submit'
-                                    defaultMessage='Start a trial'
-                                />
-                            </LoadingWrapper>
-                        </button>
-                        {gettingTrialError}
-                    </p>
-                    <p className='help-text'>
-                        <FormattedMessage
-                            id='admin.license.trial-request.different-data'
-                            defaultMessage='Or get a trial license manually at '
-                        />
-                        <a
-                            target='_blank'
-                            rel='noopener noreferrer'
-                            href='https://mattermost.com/trial/?utm_medium=product&utm_source=product-trial'
-                        >
-                            {'https://mattermost.com/trial/'}
-                        </a>
-                    </p>
-                </div>
-            );
-
-            licenseType = 'This software is offered under a commercial license.\n\nSee ENTERPRISE-EDITION-LICENSE.txt in your root install directory for details. See NOTICE.txt for information about open source software used in this system.';
-
-            let fileName;
-            if (this.state.fileName) {
-                fileName = this.state.fileName;
-            } else {
-                fileName = (
-                    <FormattedMessage
-                        id='admin.license.noFile'
-                        defaultMessage='No file uploaded'
-                    />
-                );
-            }
-
-            let uploadButtonText = (
-                <FormattedMessage
-                    id='admin.license.upload'
-                    defaultMessage='Upload'
-                />
-            );
-            if (uploading) {
-                uploadButtonText = (
-                    <FormattedMessage
-                        id='admin.license.uploading'
-                        defaultMessage='Uploading License...'
-                    />
-                );
-            }
-
-            licenseKey = (
-                <div className='col-sm-8'>
-                    <div className='file__upload'>
-                        <button className='btn btn-primary'>
-                            <FormattedMessage
-                                id='admin.license.choose'
-                                defaultMessage='Choose File'
-                            />
-                        </button>
-                        <input
-                            ref='fileInput'
-                            type='file'
-                            accept='.mattermost-license'
-                            onChange={this.handleChange}
-                        />
-                    </div>
-                    <button
-                        className={btnClass}
-                        disabled={!this.state.fileSelected}
-                        onClick={this.handleSubmit}
-                        id='upload-button'
-                    >
-                        {uploadButtonText}
-                    </button>
-                    <div className='help-text m-0'>
-                        {fileName}
-                    </div>
-                    <br/>
-                    {serverError}
-                    <p className='help-text m-0'>
-                        <FormattedMarkdownMessage
-                            id='admin.license.uploadDesc'
-                            defaultMessage='Upload a license key for Mattermost Enterprise Edition to upgrade this server. [Visit us online](!http://mattermost.com) to learn more about the benefits of Enterprise Edition or to purchase a key.'
-                        />
-                    </p>
-=======
                     {'Mattermost Enterprise Edition. A license is required to unlock enterprise features.'}
                     <p className='trial'>
                         <button
@@ -340,7 +239,6 @@ export default class LicenseSettings extends React.PureComponent {
                             defaultMessage='Upload a license key for Mattermost Enterprise Edition to upgrade this server. [Visit us online](!http://mattermost.com) to learn more about the benefits of Enterprise Edition or to purchase a key.'
                         />
                     </p>
->>>>>>> upstream/master~200
                 </div>
             );
         }
