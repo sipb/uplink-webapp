@@ -172,8 +172,6 @@ export default class LicenseSettings extends React.PureComponent {
         const startsAt = <FormattedDate value={new Date(parseInt(license.StartsAt, 10))}/>;
         const expiresAt = <FormattedDate value={new Date(parseInt(license.ExpiresAt, 10))}/>;
 
-        if (license.IsLicensed === 'true' && !uploading) {
-            edition = 'SIPB Uplink, a fork of Mattermost. Features considered to be Enterprise features by Mattermost are automatically unlocked in this fork.';
         if (!this.props.enterpriseReady) { // Team Edition
             // Note: DO NOT LOCALISE THESE STRINGS. Legally we can not since the license is in English.
             edition = (
@@ -266,7 +264,7 @@ export default class LicenseSettings extends React.PureComponent {
         } else if (license.IsLicensed === 'true' && !uploading) {
             // Note: DO NOT LOCALISE THESE STRINGS. Legally we can not since the license is in English.
             const sku = license.SkuShortName ? <React.Fragment>{`Edition: Mattermost Enterprise Edition ${license.SkuShortName}`}<br/></React.Fragment> : null;
-            edition = 'Mattermost Enterprise Edition. Enterprise features on this server have been unlocked with a license key and a valid subscription.';
+            edition = 'SIPB Uplink, a fork of Mattermost. Features considered to be Enterprise features by Mattermost are automatically unlocked in this fork.';
             if (upgradedFromTE) {
                 eelicense = this.renderEELicenseText();
             }
