@@ -7,7 +7,7 @@ import React from 'react';
 import {FormattedDate, FormattedTime, FormattedMessage} from 'react-intl';
 
 import * as Utils from 'utils/utils.jsx';
-import {isLicenseExpired, isLicenseExpiring} from 'utils/license_utils.jsx';
+import {isLicenseExpired, isLicenseExpiring, isTrialLicense} from 'utils/license_utils.jsx';
 import {format} from 'utils/markdown';
 
 import * as AdminActions from 'actions/admin_actions.jsx';
@@ -18,6 +18,7 @@ import FormattedAdminHeader from 'components/widgets/admin_console/formatted_adm
 import LoadingWrapper from 'components/widgets/loading/loading_wrapper';
 
 import RenewLinkCard from './renew_license_card/renew_license_card';
+import TrialLicenseCard from './trial_license_card/trial_license_card';
 
 export default class LicenseSettings extends React.PureComponent {
     static propTypes = {
@@ -541,12 +542,21 @@ export default class LicenseSettings extends React.PureComponent {
     }
 
     renewLicenseCard = () => {
+        const {isDisabled} = this.props;
+        if (isTrialLicense(this.props.license)) {
+            return (
+                <TrialLicenseCard
+                    license={this.props.license}
+                />
+            );
+        }
         if (isLicenseExpired(this.props.license) || isLicenseExpiring(this.props.license)) {
             return (
                 <RenewLinkCard
                     license={this.props.license}
                     isLicenseExpired={isLicenseExpired(this.props.license)}
                     totalUsers={this.props.stats.TOTAL_USERS}
+                    isDisabled={isDisabled}
                 />
             );
         }
