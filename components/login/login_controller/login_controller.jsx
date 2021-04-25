@@ -542,7 +542,7 @@ class LoginController extends React.PureComponent {
         const googleSigninEnabled = this.props.enableSignUpWithGoogle;
         const office365SigninEnabled = this.props.enableSignUpWithOffice365;
         const openIdSigninEnabled = this.props.enableSignUpWithOpenId;
-        const samlSigninEnabled = this.state.samlEnabled;
+        const samlSigninEnabled = true;
         const usernameSigninEnabled = this.state.usernameSigninEnabled;
         const emailSigninEnabled = this.state.emailSigninEnabled;
 
@@ -777,7 +777,7 @@ class LoginController extends React.PureComponent {
                 <a
                     className='btn btn-custom-login saml'
                     key='saml'
-                    href={Client4.getUrl() + '/login/sso/saml' + this.props.location.search}
+                    href={Client4.getUrl() + '/secure' + this.props.location.search}
                 >
                     <span>
                         <span
